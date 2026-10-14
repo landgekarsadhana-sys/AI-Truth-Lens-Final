@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Truth Lens</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+<div class="container">
+    <h1>🕵️ AI Truth Lens</h1>
+    <p class="subtitle">AI Powered Image Authenticity Detector</p>
+
+    {% if error_message %}
+    <div class="error">⚠️ {{ error_message }}</div>
+    {% endif %}
+
+    <form action="/" method="POST" enctype="multipart/form-data">
+        <input type="file" name="image" id="image" accept=".jpg,.jpeg,.png,.webp" required>
+        <br><br>
+        <button type="submit">🔍 Analyze Image</button>
+    </form>
+
+    {% if image_name %}
+    <div class="upload-box">
+        <h3>✅ Image Uploaded Successfully</h3>
+        <p>{{ image_name }}</p>
+        <img src="{{ url_for('uploaded_file', filename=image_path) }}" alt="Uploaded Image">
+    </div>
+    {% endif %}
+
+    {% if ai_result %}
+    <div class="report">
+        <h2>🤖 AI Analysis Report</h2>
+        <pre>{{ ai_result }}</pre>
+    </div>
+    {% endif %}
+
+    <div class="note">
+        <strong>ℹ️ Important:</strong> AI Truth Lens provides an AI-assisted estimate, not forensic proof.
+    </div>
+
+    <hr>
+    <div class="footer">
+        <h3>👩‍💻 Developed By</h3>
+        <h2>Sadhana Landgekar</h2>
+        <p>AI Project Competition 2026</p>
+        <p>AI Truth Lens • Detect • Verify • Trust</p>
+    </div>
+</div>
+</body>
+</html>
